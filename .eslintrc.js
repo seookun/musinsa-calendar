@@ -35,6 +35,7 @@ module.exports = {
   plugins: ['simple-import-sort'],
   rules: {
     '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
 
     'prettier/prettier': 'error',
