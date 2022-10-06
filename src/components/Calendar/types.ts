@@ -2,6 +2,7 @@ export type CalendarStorage = WindowLocalStorage | WindowSessionStorage;
 export type CalendarView = 'month' | 'week';
 
 export interface CalendarEvent {
+  eventKey: string;
   color: string;
   title: string;
   startDate: Date;
@@ -26,7 +27,7 @@ export interface CalendarState {
 export interface CalendarContextType extends CalendarState {
   setDate: (date: Date) => void;
   setView: (view: CalendarView) => void;
-  addEvent: (event: Omit<CalendarEvent, 'color'>) => void;
+  addEvent: (event: Omit<CalendarEvent, 'eventKey' | 'color'>) => void;
   removeEvent: (event: CalendarEvent) => void;
   updateEvent: (event: CalendarEvent) => void;
 }
