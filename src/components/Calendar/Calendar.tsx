@@ -1,31 +1,37 @@
 import { useReducer } from 'react';
+import { v4 as uuid } from 'uuid';
 
 import { CalendarProvider } from './CalendarContext';
 import CalendarControl from './CalendarControl';
 import CalendarMonthView from './CalendarMonthView';
 import CalendarWeekView from './CalendarWeekView';
 import { CalendarContextType, CalendarEvent, CalendarProps, CalendarState, CalendarView } from './types';
+import { getCompareDate, getDayStart } from './utils';
 
 type CalendarAction =
   | { type: 'SET_DATE'; payload: Date }
   | { type: 'SET_VIEW'; payload: CalendarView }
-  | { type: 'ADD_EVENT'; payload: Omit<CalendarEvent, 'color'> }
+  | { type: 'ADD_EVENT'; payload: CalendarEvent }
   | { type: 'REMOVE_EVENT'; payload: CalendarEvent }
   | { type: 'UPDATE_EVENT'; payload: CalendarEvent };
 
 function calendarReducer(state: CalendarState, action: CalendarAction): CalendarState {
-  switch (action.type) {
+  const { type, payload } = action;
+
+  switch (type) {
     case 'SET_DATE':
-      return { ...state, date: action.payload };
+      return { ...state, date: payload };
     case 'SET_VIEW':
-      return { ...state, view: action.payload };
+      return { ...state, view: payload };
     case 'ADD_EVENT': {
-      const color = Math.floor(Math.random() * 16777215).toString(16);
-      const event = { color, ...action.payload };
-      return { ...state, events: [...state.events, event] };
+      const events = [...state.events, payload].sort((a, b) => {
+        const x = getCompareDate(a.startDate, b.startDate);
+        return x === 0 ? getCompareDate(a.endDate, b.endDate) : x;
+      });
+      return { ...state, events };
     }
     case 'REMOVE_EVENT': {
-      const index = state.events.findIndex((e) => e.color === action.payload.color);
+      const index = state.events.findIndex((e) => e.eventKey === payload.eventKey);
       if (index > -1) {
         state.events.splice(index, 1);
         return { ...state, events: [...state.events] };
@@ -33,9 +39,9 @@ function calendarReducer(state: CalendarState, action: CalendarAction): Calendar
       return state;
     }
     case 'UPDATE_EVENT': {
-      const event = state.events.find((e) => e.color === action.payload.color);
+      const event = state.events.find((e) => e.eventKey === payload.eventKey);
       if (event) {
-        Object.assign(event, action.payload);
+        Object.assign(event, payload);
         return { ...state, events: [...state.events] };
       }
       return state;
@@ -47,7 +53,7 @@ function useCalendar(props: CalendarProps): CalendarContextType {
   const [state, dispatch] = useReducer(calendarReducer, {
     storage: props.storage,
     storageKey: props.storageKey,
-    date: props.initialDate || new Date(),
+    date: getDayStart(props.initialDate || new Date()),
     view: props.initialView || 'month',
     events: [],
   });
@@ -60,8 +66,15 @@ function useCalendar(props: CalendarProps): CalendarContextType {
     dispatch({ type: 'SET_VIEW', payload: view });
   };
 
-  const addEvent = (event: Omit<CalendarEvent, 'color'>) => {
-    dispatch({ type: 'ADD_EVENT', payload: event });
+  const addEvent = (event: Omit<CalendarEvent, 'eventKey' | 'color'>) => {
+    dispatch({
+      type: 'ADD_EVENT',
+      payload: {
+        eventKey: uuid(),
+        color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+        ...event,
+      },
+    });
   };
 
   const removeEvent = (event: CalendarEvent) => {

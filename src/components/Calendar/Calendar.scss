@@ -1,13 +1,201 @@
 .Calendar {
-  min-width: 1920px;
-  padding: 112px 131px;
+  // width: 1920px;
+  // padding: 112px 131px;
+  width: 1400px;
+  padding: 60px 100px;
+  margin: 0 auto;
+  overflow: hidden;
   background: #fff;
 }
 
 .CalendarControl {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+
+  /* Left */
+  &__left {
+    display: flex;
+    height: 100%;
+  }
+
+  &__today {
+    width: 76px;
+    flex: 1 0 0%;
+    border: 1px solid #d2d2d2;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  /* Center */
+  &__center {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 38px;
+  }
+
+  &__title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  &__prev,
+  &__next {
+    padding: 0;
+    border: none;
+    font-size: 27px;
+    font-weight: 700;
+    color: #000;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* Right */
+  &__right {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 40px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
+  }
+
+  &__view {
+    width: 70px;
+    flex: 1 0 0%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    background: #fff;
+    cursor: pointer;
+
+    &--selected {
+      color: #fff;
+      background: #000;
+    }
+  }
 }
 
 .CalendarMonthView {
+  margin-top: 91px;
+
+  /* Header */
+  &__daysOfWeek {
+    display: flex;
+    border-bottom: 1px solid #d2d2d2;
+  }
+
+  &__dayOfWeek {
+    height: 60px;
+    flex: 1 0 0%;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 60px;
+    color: #828282;
+
+    & + & {
+      border-left: 1px solid #d2d2d2;
+    }
+
+    &--sunday {
+      color: #eb5757;
+    }
+
+    &--saturday {
+      color: #2f80ed;
+    }
+  }
+
+  /* Content */
+  &__dayRow {
+    display: flex;
+
+    & + & {
+      border-top: 1px solid #d2d2d2;
+    }
+  }
+
+  &__day {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0%;
+    padding: 0;
+    min-height: 140px;
+    border: none;
+    background: #fff;
+
+    & + & {
+      border-left: 1px solid #d2d2d2;
+    }
+
+    &__title {
+      flex: 1 0 32px;
+      width: 100%;
+      padding: 14px 10px 0;
+      box-sizing: border-box;
+
+      span {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 32px;
+        text-align: center;
+        color: #828282;
+        cursor: pointer;
+      }
+    }
+
+    &__events {
+      flex: 1 0 calc(100% - 46px);
+      width: 100%;
+      padding: 11px 20px;
+      box-sizing: border-box;
+
+      button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
+        text-align: start;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button + button {
+        margin-top: 8px;
+      }
+    }
+
+    &--today {
+      .CalendarMonthView__day__title span {
+        border-radius: 20px;
+        color: #fff;
+        background: #0078ff;
+      }
+    }
+
+    &--otherMonth {
+      .CalendarMonthView__day__title span {
+        color: #e0e0e0;
+        cursor: default;
+      }
+    }
+  }
 }
 
 .CalendarWeekView {
