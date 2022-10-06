@@ -139,15 +139,16 @@
       padding: 14px 10px 0;
       box-sizing: border-box;
 
-      span {
+      button {
         display: inline-block;
         width: 32px;
         height: 32px;
+        border: none;
         font-size: 20px;
         font-weight: 500;
-        line-height: 32px;
         text-align: center;
         color: #828282;
+        background: #fff;
         cursor: pointer;
       }
     }
@@ -178,7 +179,7 @@
     }
 
     &--today {
-      .CalendarMonthView__day__title span {
+      .CalendarMonthView__day__title button {
         border-radius: 20px;
         color: #fff;
         background: #0078ff;
@@ -186,7 +187,7 @@
     }
 
     &--otherMonth {
-      .CalendarMonthView__day__title span {
+      .CalendarMonthView__day__title button {
         color: #e0e0e0;
         cursor: default;
       }

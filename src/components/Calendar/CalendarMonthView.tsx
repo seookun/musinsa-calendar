@@ -51,7 +51,7 @@ function CalendarMonthView() {
                 })}
               >
                 <div className="CalendarMonthView__day__title">
-                  <span>{getDate(d)}</span>
+                  <button tabIndex={isOtherMonth ? -1 : 0}>{getDate(d)}</button>
                 </div>
                 <div className="CalendarMonthView__day__events">
                   {!isOtherMonth &&
