@@ -1,12 +1,11 @@
 import { useCalendarContext } from './CalendarContext';
 
 function CalendarWeekView() {
-  const ctx = useCalendarContext;
+  const ctx = useCalendarContext();
 
   return (
     <div className="CalendarWeekView">
-      {' '}
-      <div></div>
+      <div>{ctx.view}</div>
     </div>
   );
 }
