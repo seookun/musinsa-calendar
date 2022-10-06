@@ -1,11 +1,7 @@
 .Calendar {
-  // width: 1920px;
-  // padding: 112px 131px;
-  width: 1400px;
-  padding: 60px 100px;
-  margin: 0 auto;
   overflow: hidden;
   background: #fff;
+  box-sizing: border-box;
 }
 
 .CalendarControl {
