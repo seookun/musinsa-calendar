@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import { useMemo } from 'react';
 
 import { useCalendarContext } from './CalendarContext';
-import { getDate, getDatesInSixWeeks, getDayEnd, getDayStart, isIncludeDate, isSameDate, isSameMonth } from './utils';
+import { getDate, getDatesInSixWeeks, getDayEnd, getDayStart, isSameDate, isSameMonth } from './utils';
 
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
