@@ -46,12 +46,21 @@
   &__prev,
   &__next {
     padding: 0;
+    width: 13px;
+    height: 26px;
     border: none;
-    font-size: 27px;
-    font-weight: 700;
-    color: #000;
     background: transparent;
     cursor: pointer;
+  }
+
+  &__prev {
+    background: url('../../assets/arrow_prev.svg') no-repeat;
+    background-size: 13px 26px;
+  }
+
+  &__next {
+    background: url('../../assets/arrow_next.svg') no-repeat;
+    background-size: 13px 26px;
   }
 
   /* Right */
