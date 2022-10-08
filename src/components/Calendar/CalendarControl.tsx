@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 
 import { useCalendarContext } from './CalendarContext';
 import { CalendarView } from './types';
-import { getDayStart, getNextsMonthStart, getPreviousMonthStart } from './utils';
+import { getDayStart, getNextMonthStart, getPreviousMonthStart } from './utils';
 
 const getMonthViewTitle = (d: Date) => `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
 const getWeekViewTitle = (d: Date) =>
@@ -36,7 +36,7 @@ function CalendarControl() {
           〈
         </button>
         <span className="CalendarControl__title">{calendarTitle}</span>
-        <button className="CalendarControl__next" onClick={() => ctx.setDate(getNextsMonthStart(ctx.date))}>
+        <button className="CalendarControl__next" onClick={() => ctx.setDate(getNextMonthStart(ctx.date))}>
           〉
         </button>
       </div>

@@ -34,7 +34,7 @@ export function getPreviousMonthStart(d: Date) {
   return new Date(getYear(d), getMonth(d) - 1, 1);
 }
 
-export function getNextsMonthStart(d: Date) {
+export function getNextMonthStart(d: Date) {
   return new Date(getYear(d), getMonth(d) + 1, 1);
 }
 
