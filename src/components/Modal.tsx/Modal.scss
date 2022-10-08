@@ -1,0 +1,39 @@
+.Modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__dim {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.2;
+  }
+
+  &__content {
+    position: relative;
+    padding: 48px;
+    max-height: calc(100vh - 60px);
+    background: #ffffff;
+    box-shadow: 0px 20px 64px rgba(0, 0, 0, 0.31);
+    border-radius: 18px;
+
+    &__close {
+      position: absolute;
+      top: 37px;
+      right: 37px;
+      width: 19px;
+      height: 19px;
+      border: none;
+      background: url('../../assets/close.svg') no-repeat;
+      background-size: 19px 19px;
+      cursor: pointer;
+    }
+  }
+}
