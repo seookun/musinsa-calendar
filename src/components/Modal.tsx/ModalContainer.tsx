@@ -8,8 +8,8 @@ const modalQueue: ModalQueueNode[] = [];
 
 let forceUpdate: (() => void) | null = null;
 
-export function modal(params: ModalParameters) {
-  return new Promise<ModalResponse>((resolve) => {
+export function modal<Prop, Payload>(params: ModalParameters<Prop>) {
+  return new Promise<ModalResponse<Payload>>((resolve) => {
     modalQueue.push({
       id: uuid(),
       resolve,
@@ -64,8 +64,8 @@ function ModalContainer() {
         <Modal key={modal.id} onCancel={() => onCancel(modal)}>
           <modal.Component
             {...modal.props}
-            onOk={(payload: any) => onOk(modal, payload)}
-            onCancel={(payload: any) => onCancel(modal, payload)}
+            onOk={(payload?: any) => onOk(modal, payload)}
+            onCancel={(payload?: any) => onCancel(modal, payload)}
           />
         </Modal>
       ))}

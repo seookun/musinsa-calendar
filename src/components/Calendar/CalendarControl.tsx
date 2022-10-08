@@ -32,13 +32,9 @@ function CalendarControl() {
         </button>
       </div>
       <div className="CalendarControl__center">
-        <button className="CalendarControl__prev" onClick={() => ctx.setDate(getPreviousMonthStart(ctx.date))}>
-          〈
-        </button>
+        <button className="CalendarControl__prev" onClick={() => ctx.setDate(getPreviousMonthStart(ctx.date))} />
         <span className="CalendarControl__title">{calendarTitle}</span>
-        <button className="CalendarControl__next" onClick={() => ctx.setDate(getNextMonthStart(ctx.date))}>
-          〉
-        </button>
+        <button className="CalendarControl__next" onClick={() => ctx.setDate(getNextMonthStart(ctx.date))} />
       </div>
       <div className="CalendarControl__right">
         <button className={getControlViewClassName('month')} onClick={() => ctx.setView('month')}>

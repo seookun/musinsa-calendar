@@ -31,3 +31,24 @@ export interface CalendarContextType extends CalendarState {
   removeEvent: (event: CalendarEvent) => void;
   updateEvent: (event: CalendarEvent) => void;
 }
+
+export type CalendarRegisterPayload =
+  | {
+      type: 'create';
+      event: Omit<CalendarEvent, 'eventKey' | 'color'>;
+    }
+  | {
+      type: 'update';
+      event: CalendarEvent;
+    }
+  | {
+      type: 'delete';
+      event: CalendarEvent;
+    };
+
+export interface CalendarRegisterProps {
+  date?: Date;
+  event?: CalendarEvent;
+  onOk?: (payload: CalendarRegisterPayload) => void;
+  onCancel?: () => void;
+}

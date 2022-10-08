@@ -1,3 +1,13 @@
 body {
   margin: 60px 140px 100px;
 }
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.col {
+  flex: 1 0 0%;
+}

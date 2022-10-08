@@ -10,6 +10,14 @@ export function getDate(d: Date) {
   return d.getDate();
 }
 
+export function getHours(d: Date) {
+  return d.getHours();
+}
+
+export function getMinutes(d: Date) {
+  return d.getMinutes();
+}
+
 export function getDayOfWeek(d: Date) {
   return d.getDay();
 }
@@ -74,4 +82,11 @@ export function isSameMonth(d1: Date, d2: Date) {
 
 export function isSameDate(d1: Date, d2: Date) {
   return d1.valueOf() === d2.valueOf();
+}
+
+export function getFormatDate(d: Date, type: 'yyyy-MM-dd' | 'hh:mm' = 'yyyy-MM-dd') {
+  if (type === 'yyyy-MM-dd') {
+    return d.toISOString().slice(0, 10);
+  }
+  return `${getHours(d).toString().padStart(2, '0')}:${getMinutes(d).toString().padStart(2, '0')}`;
 }
